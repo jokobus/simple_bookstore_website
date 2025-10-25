@@ -1,0 +1,490 @@
+/* ==========================================================================
+    1. Design System (CSS Custom Properties)
+    ========================================================================== */
+:root{
+    /* Color Palette */
+    --accent: #942b02;                /* Some accent color */
+    --color: #000;                    /* Text color */
+    --bg: rgba(255, 255, 255, var(--opacity));  /* Background color of text box (will be transparent) */
+    --link:#942b02;                   /* Colorization of links, e.g. to websites or email address*/
+
+    /* Effects */
+    --opacity: 0.8;                     /* opacity = 1 - transparency */
+
+    /* Layout & Sizing */
+    --thumb-width:320px;
+    --thumb-aspect:2/3;                 /* Aspect ration of the image, e.g. 1/1, 16/9 etc. */
+    --text-gap:20px;      
+    --text-max-width:1200px;            /* Max width of the textbox on a large display */
+    --frame-thickness: 0px;             /* Thickness of the frame around the images, text box, the header and footer*/
+    --items-per-row: 4;                 /* Number of pictures per row */
+    
+    /* Header bar background */
+    /* Show header bar: */
+    
+    --header-background: var(--bg); 
+    --header-backdrop-filter: blur(8px);
+    
+    /* Hide header bar: */
+    /*
+    --header-background: transparent; 
+    --header-backdrop-filter: none;
+    */
+    
+    /* Footer bar background */
+    /* Show footer bar: */
+    --footer-background: var(--bg); 
+    --footer-backdrop-filter: blur(8px);
+    /* Hide footer bar: */
+    /*
+    --footer-background: transparent; 
+    --footer-backdrop-filter: none;
+    */
+}
+
+/* ==========================================================================
+    2. Global Styles & Base Layout
+    ========================================================================== */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--color);
+}
+
+body {
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    background-image: url("images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #f0f0f0; /* Fallback background color, if background image not found */
+    
+}
+
+main { 
+    flex:1 0 auto; /* Allows main to grow, pushing the footer down. */
+}
+
+/* ==========================================================================
+    3. Header & Footer
+    ========================================================================== */
+
+.titlebar {
+    background: var(--header-background);
+    color: var(--color);
+    /*border-bottom: 4px solid var(--color);*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    position: sticky;
+    top: -50ex;
+    z-index: 50;
+    border-bottom: var(--frame-thickness) solid var(--color);
+    backdrop-filter: var(--header-backdrop-filter); 
+    -webkit-backdrop-filter: var(--header-backdrop-filter);
+    opacity: var(--opacity);
+}
+
+.titlebar-inner h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color);
+    opacity: 1;
+}
+
+footer{
+    font-size:14px;
+    text-align:center;
+    align-items:center;
+    padding:16px;
+    border-top: var(--frame-thickness) solid var(--color);
+    background: var(--footer-background);
+    backdrop-filter: var(--footer-backdrop-filter);
+    -webkit-backdrop-filter: var(--footer-backdrop-filter);
+    flex-shrink:0;
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    opacity: var(--opacity);
+}
+
+.footer-text {
+    margin:0;
+    text-align:left;
+    font-size:0.95rem;
+    opacity: 1;
+}
+
+.footer-link {
+    color:var(--color);
+    text-decoration:none;
+    font-weight:500;
+}
+
+.footer-link:focus,.footer-link:hover {
+    text-decoration:underline;
+    outline:none;
+}
+
+/* ==========================================================================
+    4. Content Containers & Gallery Layout
+    ========================================================================== */
+
+.container {
+    width: 95vw;
+    max-width: 95vw;
+    padding: 24px;
+    box-sizing: border-box;
+    display:flex;
+    margin: 0 auto; 
+    justify-content:center;
+}
+
+.gallery-row {
+    width: min(95vw, var(--text-max-width));
+    max-width: 95vw;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    justify-content:center;
+    box-sizing:border-box;
+}
+
+/* row-full: an element that spans the entire computed gallery row width. */
+.row-full {
+    width: min(90vw, var(--text-max-width));
+    max-width: 95vw;
+    display:flex;
+    justify-content:center;
+    box-sizing:border-box;
+}
+
+/* ==========================================================================
+    5. Text Box
+    ========================================================================== */
+
+.text-box{
+    width:100%;
+    border-radius:6px;
+    border: var(--frame-thickness) solid var(--color);
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    padding:12px 14px;
+    background:var(--bg);
+    display:flex;
+    align-items:flex-start;
+    box-sizing:border-box;
+    transition:transform .18s ease, box-shadow .18s ease;
+    opacity: var(--opacity);
+}
+
+.row-full:hover .text-box { 
+    transform:scale(1.01); 
+    box-shadow:0 6px 18px rgba(0,0,0,0.12); 
+}
+
+.text-input{
+    width:100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--color);
+    padding: 6px 8px;
+    display:block;
+    white-space:normal;
+    word-break:break-word;
+    line-height:1.4;
+    opacity: 1;
+}
+
+.static-text{
+    pointer-events:none;
+    user-select:text;
+    opacity: 1;
+}
+
+.row-full:focus-within .text-box {
+    outline:3px solid rgba(0,123,255,0.12); 
+    outline-offset:3px; }
+
+h1 {
+    margin: 0 0 12px;
+    font-size: clamp(1.4rem,2.6vw,2.2rem);
+    color: var(--color);
+}
+
+hr {
+    height: 2px;
+    border: none;
+    background-color: var(--color);
+}
+
+.intro {
+    max-width: 900px;
+    margin: 0 auto 18px;
+    line-height: 1.5;
+    color: var(--color);
+}
+
+/* ==========================================================================
+    6. Gallery Items
+    ========================================================================== */
+
+.image-gallery{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    justify-content:flex-start;
+}
+
+.image-item{
+    flex: 0 1 calc((100% - (var(--items-per-row) - 1) * 14px) / var(--items-per-row));
+    max-width: calc(var(--thumb-width));
+    box-sizing:border-box;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity: 0.9;
+    transition: opacity 0.20s ease;
+}
+
+.image-description { 
+    margin-top: 12px; 
+    color: var(--text-color, #000); 
+}
+
+/* Adapt layout to the display size */
+@media (max-width:1200px){
+    :root {
+    --items-per-row: 3;
+    }
+}
+
+@media (max-width:800px){
+    :root {
+    --items-per-row: 2;
+    }
+}
+
+@media (max-width:480px){
+    :root {
+    --items-per-row: 1;
+    }
+    .image-item { 
+        max-width:100%; /* Allows single item to be full-width on mobile */
+    }
+}
+
+.image-item:hover {
+    opacity: 1;
+}
+
+/* Thumbnail appearance */
+.thumb{
+    width:100%;
+    aspect-ratio: var(--thumb-aspect);
+    object-fit:cover;
+    border-radius:6px;
+    border: var(--frame-thickness) solid var(--color);
+    transition:transform .18s ease, box-shadow .18s ease;
+    display:block;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.image-item:hover .thumb{
+    transform:scale(1.03);
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
+
+@media (max-width:1200px){
+    .row-full { flex:1 1 calc((100% / 3) - 28px); flex-basis:100%; }
+}
+@media (max-width:800px){
+    .row-full { flex:1 1 calc((100% / 2) - 28px); flex-basis:100%; }
+}
+@media (max-width:480px){
+    .row-full { flex:1 1 100%; flex-basis:100%; }
+}
+
+
+/* ==========================================================================
+    7. Modal (Lightbox Popup)
+    ========================================================================== */
+
+#modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+}
+#modal .backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition:opacity .25s ease;
+    opacity:0;
+}
+#modal .dialog{
+    position:relative;
+    width:clamp(300px, 60vw, 1100px);
+    max-height:85vh;
+    z-index:1001;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    transform:translateY(18px) scale(.98);
+    transition:transform .28s cubic-bezier(.2,.9,.2,1), opacity .22s ease;
+    opacity:0;
+}
+
+/* Modal visibility states */
+#modal.open .backdrop{ opacity:1; }
+#modal.open .dialog{ transform:none; opacity:1; }
+
+/* Popup images */
+.dialog .modal-image {
+    width:100%;
+    max-height:calc(85vh - 160px);
+    object-fit:cover;
+    border-radius:6px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.35);
+    /* background:#111; */ /* This line is removed to prevent black bars */
+    border: var(--frame-thickness) solid var(--color); /* This adds the accent color frame */
+    box-sizing: border-box; /* Ensures the border is included in the element's size */
+    aspect-ratio: var(--thumb-aspect);
+}
+
+/* Popup information text box*/
+.caption{
+    width:100%;
+    text-align:left;
+    background:var(--bg); /* Using the consistent semi-transparent background */
+    padding:14px 18px;
+    border-radius:6px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    border: var(--frame-thickness) solid var(--color);
+    box-sizing: border-box;
+    opacity: var(--opacity);
+}
+
+.caption h2 {
+    margin:0 0 6px; 
+    font-size:1.05rem; 
+    color:var(--color);
+}
+
+.caption p {
+    margin:0;
+    line-height:1.45; 
+    color: var(--color); 
+    max-height:4.5em; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    opacity: 1;
+}
+
+/* Popup Close button */
+.close-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index:1002;
+    background:rgba(255,255,255,0.85);
+    border:0;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:18px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.12);
+    opacity: var(--opacity);
+}
+
+.close-btn:hover{
+    transform:scale(1.04);
+}
+
+/* Accessibility focus styles */
+.image-item:focus-within, 
+.close-btn:focus,
+.text-box:focus-within {
+    outline:3px solid var(--accent);
+    outline-offset:3px;
+}
+
+/* Responsive adjustments for the modal */
+@media (max-width:560px){
+    .dialog{ width:94vw; }
+    .caption{ padding:12px; }
+}
+
+/* ==========================================================================
+    8. Utility Classes
+    ========================================================================== */
+
+/* Amazon link row*/
+.amazon-row {
+    margin-top: 6px;
+    padding-top: 10px; 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    /* border-top: 1px solid rgba(148, 43, 2, 0.2); /* Subtle separator line */
+}
+
+.amazon-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.amazon-link svg {
+    display: block; 
+    color: inherit; 
+}
+
+.amazon-link:hover,
+.amazon-link:focus {
+    text-decoration: underline;
+    outline: none;
+}
+
+/* Email */
+.email-link { 
+    text-decoration: none;
+    pointer-events: auto; 
+    z-index: 10; 
+    color: var(--link);
+}
+
+.overlapping { 
+    pointer-events: none; 
+}
+
+.email-link:hover,
+.email-link:focus {
+    text-decoration: underline;
+    outline: none;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alle meine Bücher an einem Ort! </title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <header class="titlebar">
+    <div class="titlebar-inner">
+      <h1>Alle meine Bücher an einem Ort! </h1>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="gallery-row" aria-label="Gallery and text row">
+        <div class="row-full" role="group" aria-label="Search or caption">
+          <div class="text-box">
+            <span class="text-input static-text">
+                <h1>
+                Über mich: Bücher und Geschichten verschiedener Genres. 
+                </h1>
+                <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <h1>
+                
+                Was mir als Autor wichtig ist. 
+                </h1>
+                <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                
+                <p>
+                Vielen Dank für das Aufsuchen dieser Webseite und viel Spaß beim Lesen. 
+                </p>
+                Vorname, Nachname
+            </span>
+          </div>
+        </div>
+
+        <div class="image-gallery" aria-label="Image gallery">
+          
+          <div class="image-item" tabindex="0"
+            data-src="images/cover.jpg"
+            data-title="Buch Nummero Uno"
+            data-description="In diesem Buch begleiten wir die Protagonisten auf ihrer Reise durch die Zeit. "
+            data-link="https://www.amazon.de/">
+            <img class="thumb" loading="lazy" src="" alt="">
+          </div>
+
+          <div class="image-item" role="button" tabindex="0"
+            data-src="images/cover.jpg"
+            data-title="Buch Nummero Due"
+            data-description="In diesem Buch begleiten wir die Protagonisten auf ihrer Reise durch ein fremdes Land. "
+            data-link="https://amazon.de">
+            <img class="thumb" loading="lazy" src="" alt="">
+          </div>
+
+          <div class="image-item" role="button" tabindex="0"
+            data-src="images/cover.jpg"
+            data-title="Buch Nummero Tres"
+            data-description="In diesem Bilderbuch geht es auf den Bauernhof um viele Tiere zu entdecken. "
+            data-link="https://amazon.de">
+            <img class="thumb" loading="lazy" src="" alt="">
+          </div>
+
+          <div class="image-item" role="button" tabindex="0"
+            data-src="images/cover.jpg"
+            data-title="Buch Nummero Quattro"
+            data-description="Auch in diesem Buch passiert etwas Tolles. "
+            data-link="https://amazon.de">
+            <img class="thumb" loading="lazy" src="" alt="">
+          </div>
+
+          <div class="image-item" role="button" tabindex="0"
+            data-src="images/cover.jpg"
+            data-title="Buch Nummero Cinque"
+            data-description="Kaufen lohnt sich :)"
+            data-link="https://amazon.de">
+            <img class="thumb" loading="lazy" src="" alt="">
+          </div>
+          
+          <div class="image-item" role="button" tabindex="0"
+            data-src="images/cover.jpg"
+            data-title="Buch Nummero Sei"
+            data-description="In diesem Buch geht es um ... Werden Sie es schaffen, sich ihre gegenseitige Liebe zu gestehen und nebenbei die Welt zu retten? (Spoiler: Natürlich schaffen sie das, denn Tragödien veraufen sich mittlerweile eher schlecht. - Der Verleger)"
+            data-link="https://amazon.de">
+            <img class="thumb" loading="lazy" src="" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image preview">
+      <div class="backdrop" onclick="closeModal()" aria-hidden="true"></div>
+
+      <div class="dialog" role="document" aria-live="polite">
+          <button class="close-btn" aria-label="Close preview" onclick="closeModal()">✕</button>
+            <a id="modal-link" href="" target="_blank" rel="noopener noreferrer">
+                <img id="modal-image" class="modal-image" src="" alt="">
+            </a>
+            <div class="caption">
+              <h2 id="modal-title"></h2>
+              <p id="modal-description"></p>
+          </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-text">&copy; <span id="years"></span> Vorname Nachname. Alle Rechte vorbehalten. </p>
+    <a class="footer-link" href="imprint.html" rel="noopener noreferrer">Impressum</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
