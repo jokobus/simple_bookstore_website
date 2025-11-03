@@ -8,9 +8,11 @@ This is a simple static website I once built to showcase books in a gallery form
 - Basic imprint and privacy information
 - Minimal dependencies (pure HTML, CSS, JS)
 
+## Usage
+- To properly inspect the website download or clone this repository and open `index.html` with your preferred internet browser.
+- To publish a website based on this template modify the content to your liking and upload all files to your hosting service or serve them via your own Linux server and a reverse proxy of your choice. 
+- Feel free to modify, share, or improve the code as you wish!
+
 ## Disclaimer
 **Important:**
 Everyone who uses this code must check and adapt the imprint (`imprint.html`) and all legal information themselves. I do **not** take any responsibility for the correctness, completeness, or legal compliance of the imprint or any other content. Use at your own risk.
-
----
-Feel free to modify, share, or improve the code as you wish!
